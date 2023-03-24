@@ -1,7 +1,15 @@
 package godash
 
-import "github.com/imdario/mergo"
+import (
+	"reflect"
+)
 
 func Merge(dst, src interface{}) interface{} {
-	return mergo.Merge(dst, src, mergo.WithOverride)
+	srcMap := ToMap(src)
+	dstValue := reflect.ValueOf(dst).Elem()
+	for k, v := range srcMap {
+		dstField := dstValue.FieldByName(k)
+		dstField.Set(reflect.ValueOf(v))
+	}
+	return dst
 }

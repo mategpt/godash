@@ -4,7 +4,7 @@ import (
 	"reflect"
 )
 
-func Diff(structOld, structNew interface{}) interface{} {
+func DiffRetStruct(structOld, structNew interface{}) interface{} {
 	dst := reflect.ValueOf(structOld)
 	src := reflect.ValueOf(structNew)
 	if src.Kind() == reflect.Ptr {
@@ -28,4 +28,34 @@ func Diff(structOld, structNew interface{}) interface{} {
 		return nil
 	}
 	return diff.Interface()
+}
+
+func Diff(structOld, structNew interface{}) map[string]interface{} {
+	dst := reflect.ValueOf(structOld)
+	src := reflect.ValueOf(structNew)
+	if src.Kind() == reflect.Ptr {
+		src = src.Elem()
+	}
+	if dst.Kind() == reflect.Ptr {
+		dst = dst.Elem()
+	}
+
+	diffMap := map[string]interface{}{}
+	srcType := reflect.TypeOf(structNew)
+	for i := 0; i < src.NumField(); i++ {
+		key := srcType.Field(i).Name
+		value := src.Field(i).Interface()
+
+		dstField := dst.FieldByName(key)
+		if dstField.IsValid() {
+			dstValue := dst.FieldByName(key).Interface()
+			if !reflect.DeepEqual(value, dstValue) {
+				diffMap[key] = value
+			}
+		}
+	}
+	if len(diffMap) == 0 {
+		return nil
+	}
+	return diffMap
 }
