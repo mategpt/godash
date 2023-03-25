@@ -20,7 +20,7 @@ func TestDiff(t *testing.T) {
 		src  interface{}
 		want map[string]interface{}
 	}{
-		{Person{Name: "Alice", Age: 20}, Person{Age: 20, Name: "Alice"}, nil},
+		{Person{Name: "Alice", Age: 20}, &Person{Age: 20, Name: "Alice"}, nil},
 		{Person{Name: "Alice", Age: 20}, Person{Name: "Bob", Age: 20}, map[string]interface{}{"Name": "Bob"}},
 		{Person{Name: "Alice", Age: 20}, Person{Name: "Bob", Age: 21}, map[string]interface{}{"Name": "Bob", "Age": 21}},
 		{Woman{Name: "Alice", Age: 20}, Person{Name: "Alice", Age: 20}, nil},

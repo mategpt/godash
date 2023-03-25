@@ -33,15 +33,19 @@ func DiffRetStruct(structOld, structNew interface{}) interface{} {
 func Diff(structOld, structNew interface{}) map[string]interface{} {
 	dst := reflect.ValueOf(structOld)
 	src := reflect.ValueOf(structNew)
+	srcType := reflect.TypeOf(structNew)
+
 	if src.Kind() == reflect.Ptr {
 		src = src.Elem()
+	}
+	if srcType.Kind() == reflect.Ptr {
+		srcType = srcType.Elem()
 	}
 	if dst.Kind() == reflect.Ptr {
 		dst = dst.Elem()
 	}
 
 	diffMap := map[string]interface{}{}
-	srcType := reflect.TypeOf(structNew)
 	for i := 0; i < src.NumField(); i++ {
 		key := srcType.Field(i).Name
 		value := src.Field(i).Interface()
