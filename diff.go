@@ -48,14 +48,18 @@ func Diff(structOld, structNew interface{}) map[string]interface{} {
 	diffMap := map[string]interface{}{}
 	for i := 0; i < src.NumField(); i++ {
 		key := srcType.Field(i).Name
-		value := src.Field(i).Interface()
-
+		srcField := src.Field(i)
 		dstField := dst.FieldByName(key)
-		if dstField.IsValid() {
-			dstValue := dst.FieldByName(key).Interface()
-			if !reflect.DeepEqual(value, dstValue) {
-				diffMap[key] = value
-			}
+
+		if !srcField.IsValid() || !dstField.IsValid() {
+			continue
+		}
+
+		srcValue := src.Field(i).Interface()
+		dstValue := dst.FieldByName(key).Interface()
+
+		if !reflect.DeepEqual(srcValue, dstValue) {
+			diffMap[key] = srcValue
 		}
 	}
 	if len(diffMap) == 0 {

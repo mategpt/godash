@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="450968ed-c934-4748-bc2b-3ce67baf04a7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/merge.go" beforeDir="false" afterPath="$PROJECT_DIR$/merge.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/merge_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/merge_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diff.go" beforeDir="false" afterPath="$PROJECT_DIR$/diff.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +48,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;
   }
 }</component>
-  <component name="RunManager" selected="Go Test.TestDiffM in github.com/mategpt/godash">
+  <component name="RunManager" selected="Go Test.TestDiff in github.com/mategpt/godash">
     <configuration name="TestDiff in github.com/mategpt/godash" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="godash" />
       <working_directory value="$PROJECT_DIR$" />
@@ -74,8 +73,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.TestDiffM in github.com/mategpt/godash" />
         <item itemvalue="Go Test.TestDiff in github.com/mategpt/godash" />
+        <item itemvalue="Go Test.TestDiffM in github.com/mategpt/godash" />
       </list>
     </recent_temporary>
   </component>
