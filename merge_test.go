@@ -2,7 +2,6 @@ package godash
 
 import (
 	"fmt"
-	"github.com/imdario/mergo"
 	"reflect"
 	"testing"
 )
@@ -41,7 +40,7 @@ func TestDiffM(t *testing.T) {
 		//}
 		dstType := reflect.ValueOf(&c.dst).Elem().Kind()
 		fmt.Println("000000000000000", dstType, c.dst)
-		err := mergo.Map(&c.dst, srcMap, mergo.WithOverride)
+		err := Map(&c.dst, srcMap)
 		fmt.Println("111111111111111", dstType, c.dst)
 		//fmt.Printf("Merge %+v(%T) == %+v(%T), want %+v(%T)", c.src, c.src, c.dst, c.dst, c.want, c.want)
 		if err != nil {
